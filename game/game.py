@@ -33,8 +33,14 @@ title_font = pygame.font.Font("../assets/fonts/space-age/space age.ttf")
 b_sound = pygame.mixer.Sound("../assets/sounds/background.mp3")
 
 # Load lives picture
-life_icon = pygame.image.load("../assets/sprites/lives.png")
-while running:
+life_icon = pygame.image.load("../assets/sprites/life_icon.png").convert()
+life_icon.set_colorkey((255,255,255))
+
+# set number of lives
+lives = NUM_LIVES
+
+while running and lives > 0:
+    pygame.mixer.Sound.play(b_sound)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False

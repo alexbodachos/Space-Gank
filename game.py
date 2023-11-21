@@ -12,13 +12,19 @@ pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Alone in space")
 
-# Draw player
-player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+# Set frame rate
+clock = pygame.time.Clock()
 
 # Main loop
 running = True
 background = screen.copy()
 draw_background(background)
+
+# Draw Player
+player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+
+# Load font to count seconds
+count_font = pygame.font.Font
 
 while running:
     for event in pygame.event.get():

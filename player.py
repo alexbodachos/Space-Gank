@@ -11,11 +11,9 @@ class Player(pygame.sprite.Sprite):
         self.forward_image.set_colorkey((0, 0, 0))
         self.image = self.forward_image
         self.reverse_image = pygame.transform.flip(self.image, True, False)
-        self.rect = self.image.get_rect()
         self.player_x = SCREEN_WIDTH // 2
         self.player_y = SCREEN_HEIGHT // 2
-        self.rect.center = (x, y)
-        self.speed = 3
+        self.speed = 5
 
     def movement(self):
         mouse_x, mouse_y = pygame.mouse.get_pos()

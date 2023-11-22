@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fcf79ad4-aab5-4dfd-b3a7-19bb6c8010db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/game/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game/player_sprite.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/player_sprite.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +37,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/m261410/Desktop/Yungin Year/Intro to Programming/Labs/Lab7/chomp/game8"
+    "last_opened_file_path": "C:/Users/m261410/Desktop/Yungin Year/Intro to Programming/Labs/Lab7/Space-Gank"
   }
 }]]></component>
   <component name="RecentsManager">

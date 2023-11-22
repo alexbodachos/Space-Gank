@@ -3,10 +3,6 @@ import pygame
 # Initialize Pygame
 pygame.init()
 
-# Set up display
-screen = pygame.display.set_mode((400, 400))
-pygame.display.set_caption("Multiple Saved Sprites")
-
 # Load sprite sheet image
 sprite_sheet = pygame.image.load('../assets/sprites/astronaut_spritesheet.png')
 

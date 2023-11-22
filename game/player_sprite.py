@@ -8,7 +8,7 @@ screen = pygame.display.set_mode((400, 400))
 pygame.display.set_caption("Multiple Saved Sprites")
 
 # Load sprite sheet image
-sprite_sheet = pygame.image.load('assets/sprites/astronaut_spritesheet.png')
+sprite_sheet = pygame.image.load('../assets/sprites/astronaut_spritesheet.png')
 
 # Load individual sprites
 player_sprite1 = sprite_sheet.subsurface((0, 0, 64, 64))

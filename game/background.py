@@ -5,9 +5,9 @@ from game_par import *
 def draw_background(screen):
 
     # load tiles
-    ground = pygame.image.load("assets/sprites/crater1.png").convert()
-    lava1 = pygame.image.load("assets/sprites/lava1.png").convert()
-    lava2 = pygame.image.load("assets/sprites/lava2.png").convert()
+    ground = pygame.image.load("../assets/sprites/crater1.png").convert()
+    lava1 = pygame.image.load("../assets/sprites/lava1.png").convert()
+    lava2 = pygame.image.load("../assets/sprites/lava2.png").convert()
 
     # use png transparency
     ground.set_colorkey((0,0,0))

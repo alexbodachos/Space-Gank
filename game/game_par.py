@@ -5,3 +5,7 @@ TILE_SIZE = 64
 
 # lives
 NUM_LIVES = 3
+
+# time
+FRAME_COUNT = 0
+FRAME_RATE = 60

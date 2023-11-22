@@ -24,10 +24,10 @@ draw_background(background)
 player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 
 # Load font to count seconds
-count_font = pygame.font.Font("../assets/fonts/game-of-squids/Game Of Squids.ttf")
+count_font = pygame.font.Font("../assets/fonts/game-of-squids/Game Of Squids.ttf", 48)
 
 # Load game title fond
-title_font = pygame.font.Font("../assets/fonts/space-age/space age.ttf")
+title_font = pygame.font.Font("../assets/fonts/space-age/space age.ttf", 56)
 
 # Load background music
 b_sound = pygame.mixer.Sound("../assets/sounds/background.mp3")
@@ -44,12 +44,26 @@ while running and lives > 0:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        else:
+            player.movement()
 
     # draw background to back of screen
     screen.blit(background,(0,0))
 
+    # draw player on screen
+    player.draw(screen)
+
+    # timer going up on screen
+    total_seconds = FRAME_COUNT // FRAME_RATE
+    seconds = total_seconds % 60
+    timer = count_font.render(f"{seconds}s", True, (252, 179, 154))
+    screen.blit(timer, (TILE_SIZE, TILE_SIZE))
+
     # flip screen
     pygame.display.flip()
+
+    # set frame rate
+    clock.tick(60)
 
 # quit pygame
 pygame.quit()

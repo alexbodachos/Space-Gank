@@ -13,6 +13,7 @@ class Player(pygame.sprite.Sprite):
         self.reverse_image = pygame.transform.flip(self.image, True, False)
         self.player_x = SCREEN_WIDTH // 2
         self.player_y = SCREEN_HEIGHT // 2
+        self.rect = self.player_x, self.player_y
         self.speed = 5
 
     def movement(self):
@@ -27,3 +28,6 @@ class Player(pygame.sprite.Sprite):
             self.player_y += self.speed * sin(angle)
         else:
             self.player_x, self.player_y = mouse_x, mouse_y
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)

@@ -3,6 +3,7 @@ import random
 from game_par import *
 from background import draw_background
 from player import Player
+import time
 import sys
 
 # initialize pygame
@@ -39,6 +40,9 @@ life_icon.set_colorkey((255,255,255))
 # set number of lives
 lives = NUM_LIVES
 
+# set up the timer
+start_time = pygame.time.get_ticks()
+
 while running and lives > 0:
     pygame.mixer.Sound.play(b_sound)
     for event in pygame.event.get():
@@ -53,11 +57,12 @@ while running and lives > 0:
     # draw player on screen
     player.draw(screen)
 
-    # timer going up on screen
-    total_seconds = FRAME_COUNT // FRAME_RATE
-    seconds = total_seconds % 60
-    timer = count_font.render(f"{seconds}s", True, (0,0,0))
-    screen.blit(timer, (TILE_SIZE, TILE_SIZE))
+    # calculate time
+    running_time = (pygame.time.get_ticks() - start_time) //1000
+
+    # draw time text
+    timer = count_font.render(f"{running_time}", True, (0, 0, 0))
+    screen.blit(timer, (10, 10))
 
     # flip screen
     pygame.display.flip()

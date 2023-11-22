@@ -56,7 +56,7 @@ while running and lives > 0:
     # timer going up on screen
     total_seconds = FRAME_COUNT // FRAME_RATE
     seconds = total_seconds % 60
-    timer = count_font.render(f"{seconds}s", True, (252, 179, 154))
+    timer = count_font.render(f"{seconds}s", True, (0,0,0))
     screen.blit(timer, (TILE_SIZE, TILE_SIZE))
 
     # flip screen

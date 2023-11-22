@@ -51,17 +51,20 @@ while running and lives > 0:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        else:
+        elif event.type == pygame.MOUSEMOTION:
             player.movement()
 
     # draw background to back of screen
     screen.blit(background,(0,0))
 
+    # update player position
+    player.update()
+
     # draw player on screen
     player.draw(screen)
 
     # calculate time
-    running_time = (pygame.time.get_ticks() - start_time) //1000
+    running_time = (pygame.time.get_ticks() - start_time) // 1000
 
     # draw time text
     timer = count_font.render(f"{running_time}", True, (0, 0, 0))

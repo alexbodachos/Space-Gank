@@ -27,8 +27,11 @@ player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 # Load font to count seconds
 count_font = pygame.font.Font("../assets/fonts/game-of-squids/Game Of Squids.ttf", 48)
 
-# Load game title fond
-title_font = pygame.font.Font("../assets/fonts/space-age/space age.ttf", 56)
+# Load game title font 1
+title_font1 = pygame.font.Font("../assets/fonts/space-age/space age.ttf", 60)
+
+# Load game title font 2
+title_font2 = pygame.font.Font("../assets/fonts/space-age/space age.ttf", 62)
 
 # Load background music
 b_sound = pygame.mixer.Sound("../assets/sounds/background.mp3")
@@ -63,6 +66,21 @@ while running and lives > 0:
     # draw time text
     timer = count_font.render(f"{running_time}", True, (0, 0, 0))
     screen.blit(timer, (10, 10))
+
+    # draw title 2 text
+    title = title_font2.render("Space Gank", False, (255, 255, 255))
+    screen.blit(title, (SCREEN_WIDTH / 2 - title.get_width() / 2, TILE_SIZE / 2))
+
+    # draw title 1 text
+    title = title_font1.render("Space Gank", False, (0,0,0))
+    screen.blit(title, (SCREEN_WIDTH / 2 - title.get_width() / 2, TILE_SIZE / 2))
+
+    # draw life icon backdrop
+    pygame.draw.rect(screen, black, (0, 576, 96, 32))
+
+    # draw life icons
+    for i in range(lives):
+        screen.blit(life_icon, (i * TILE_SIZE / 2, SCREEN_HEIGHT - TILE_SIZE))
 
     # flip screen
     pygame.display.flip()

@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fcf79ad4-aab5-4dfd-b3a7-19bb6c8010db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/game/enemy_player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/game_par.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/game_par.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/player_enemy.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

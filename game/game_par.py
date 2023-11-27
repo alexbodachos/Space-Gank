@@ -12,3 +12,6 @@ FRAME_RATE = 60
 
 # colors
 black = (0, 0, 0)
+
+# enemy player
+ENEMY_PLAYER_SPEED = 3

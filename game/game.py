@@ -43,9 +43,6 @@ life_icon.set_colorkey((255,255,255))
 # set number of lives
 lives = NUM_LIVES
 
-# set up the timer
-start_time = pygame.time.get_ticks()
-
 while running and lives > 0:
     pygame.mixer.Sound.play(b_sound)
     for event in pygame.event.get():
@@ -60,11 +57,14 @@ while running and lives > 0:
     # update player position
     player.update()
 
+    # flip player sprite
+    player.flip()
+
     # draw player on screen
     player.draw(screen)
 
     # calculate time
-    running_time = (pygame.time.get_ticks() - start_time) // 1000
+    running_time = (pygame.time.get_ticks()) // 1000
 
     # draw time text
     timer = count_font.render(f"{running_time}", True, (0, 0, 0))
@@ -94,3 +94,6 @@ while running and lives > 0:
 # quit pygame
 pygame.quit()
 
+# TODO Helping Hand
+# Ryan Flaherty with clock
+# Ryan Flaherty with background dirt spawn

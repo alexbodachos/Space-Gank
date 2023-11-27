@@ -8,7 +8,6 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
 
         self.forward_image = player_sprite1
-        self.forward_image.set_colorkey((0, 0, 0))
         self.image = self.forward_image
         self.reverse_image = pygame.transform.flip(self.image, True, False)
         self.player_x = x
@@ -28,6 +27,13 @@ class Player(pygame.sprite.Sprite):
             self.player_y += self.speed * sin(angle)
         else:
             self.player_x, self.player_y = mouse_x, mouse_y
+
+    def flip(self):
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        if mouse_x > self.player_x:
+            self.image = self.forward_image
+        elif mouse_x < self.player_x:
+            self.image = self.reverse_image
 
     def update(self):
         self.rect = self.player_x, self.player_y

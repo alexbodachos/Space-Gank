@@ -12,8 +12,10 @@ class Player(pygame.sprite.Sprite):
         self.reverse_image = pygame.transform.flip(self.image, True, False)
         self.player_x = x
         self.player_y = y
-        self.rect = self.player_x, self.player_y
+        self.rect = self.image.get_rect()
         self.speed = 5
+        self.rect.x = self.player_x
+        self.rect.y = self.player_y
 
     def movement(self):
         mouse_x, mouse_y = pygame.mouse.get_pos()
@@ -36,7 +38,6 @@ class Player(pygame.sprite.Sprite):
             self.image = self.reverse_image
 
     def update(self):
-        self.rect = self.player_x, self.player_y
         if self.player_x <= 0:
             self.player_x = 0
         if self.player_x >= (SCREEN_WIDTH - TILE_SIZE):
@@ -45,6 +46,8 @@ class Player(pygame.sprite.Sprite):
             self.player_y = 0
         if self.player_y >= (SCREEN_HEIGHT - TILE_SIZE * 2):
             self.player_y = (SCREEN_HEIGHT - TILE_SIZE * 2)
+        self.rect.x = self.player_x
+        self.rect.y = self.player_y
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)

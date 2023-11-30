@@ -6,7 +6,7 @@ class Enemy_Player(pygame.sprite.Sprite):
         super().__init__()
 
         self.forward_image = pygame.image.load("../assets/sprites/monster1.png").convert()
-        self.forward_image.set_colorkey((0, 0, 0))
+        self.forward_image.set_colorkey((255, 255, 255))
         self.image = self.forward_image
         self.reverse_image = pygame.transform.flip(self.image, True, False)
         self.rect = self.image.get_rect()

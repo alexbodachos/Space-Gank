@@ -14,4 +14,8 @@ FRAME_RATE = 60
 black = (0, 0, 0)
 
 # enemy player
-ENEMY_PLAYER_SPEED = 3
+ENEMY_PLAYER_SPEED = 1.75
+
+# npc enemy
+MAX_SPEED = 1
+MIN_SPEED = .5

@@ -1,18 +1,51 @@
 import pygame
 import random
 from game_par import *
-from background import draw_background
+from background import draw_background, add_enemies
 from player import Player
 from enemy_player import Enemy_Player
+from enemy import Enemy, enemies
+from assets import *
 import time
 import sys
 
 # initialize pygame
 pygame.init()
 
+def intro_screen(screen):
+    intro_text1 = intro_font.render("Welcome to Space Gank!", True, (214, 11, 11))
+    intro_text2 = intro_font.render("Objective: Survive", True, (214, 11, 11))
+    intro_text3 = intro_font.render("Press Space", True, (214, 11, 11))
+    text_rect1 = intro_text1.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
+    text_rect2 = intro_text2.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + TILE_SIZE))
+    text_rect3 = intro_text2.get_rect(center=(SCREEN_WIDTH // 2 + TILE_SIZE + 25, SCREEN_HEIGHT // 2 + TILE_SIZE * 2))
+    star = pygame.image.load("../assets/sprites/star.png")
+    planet1 = pygame.image.load("../assets/sprites/planet1.png").convert()
+    planet1.set_colorkey((255, 255, 255))
+
+    running_intro = True
+    while running_intro:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    return
+
+        screen.fill((0, 0, 0))  # Fill screen with black
+        screen.blit(intro_text1, text_rect1)
+        screen.blit(intro_text2, text_rect2)
+        screen.blit(intro_text3, text_rect3)
+        screen.blit(planet1, (TILE_SIZE * 9, TILE_SIZE * 3))
+        pygame.display.flip()
+
 # Create the screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Alone in space")
+
+# Call intro screen
+intro_screen(screen)
 
 # Set frame rate
 clock = pygame.time.Clock()
@@ -28,21 +61,8 @@ player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 # Draw enemy player
 enemy_player = Enemy_Player(TILE_SIZE, TILE_SIZE)
 
-# Load font to count seconds
-count_font = pygame.font.Font("../assets/fonts/game-of-squids/Game Of Squids.ttf", 48)
-
-# Load game title font 1
-title_font1 = pygame.font.Font("../assets/fonts/space-age/space age.ttf", 60)
-
-# Load game title font 2
-title_font2 = pygame.font.Font("../assets/fonts/space-age/space age.ttf", 62)
-
-# Load background music
-b_sound = pygame.mixer.Sound("../assets/sounds/background.mp3")
-
-# Load lives picture
-life_icon = pygame.image.load("../assets/sprites/life_icon.png").convert()
-life_icon.set_colorkey((255,255,255))
+# Draw enemies on the screen
+add_enemies(1)
 
 # set number of lives
 lives = NUM_LIVES
@@ -79,6 +99,27 @@ while running and lives > 0:
     # update enemy player position
     enemy_player.update()
 
+    # update enemies
+    enemies.update()
+
+    # adding and removing enemies from the screen
+    for enemy in enemies:  # loop through our fish in the sprite group
+        if enemy.rect.x < -enemy.rect.width:  # once the fish leaves the screen it is removed
+            enemies.remove(enemy)
+            enemies.add(Enemy(random.randint(SCREEN_WIDTH, SCREEN_WIDTH * 2),
+                              random.randint(0, SCREEN_HEIGHT - TILE_SIZE * 2 - 3)))
+
+    # check for collisions between player sprite and enemy group sprites
+    result = pygame.sprite.spritecollide(player, enemies, True)
+    if result:
+        lives -= len(result)
+        add_enemies(len(result))
+
+    # check for collision with player sprite and enemy player sprite
+    result = pygame.sprite.collide_rect(player, enemy_player)
+    if result:
+        lives -= 3
+
     # flip player sprite
     player.flip()
 
@@ -87,6 +128,9 @@ while running and lives > 0:
 
     # draw enemy player on screen
     enemy_player.draw(screen)
+
+    # draw enemies on screen
+    enemies.draw(screen)
 
     # calculate time
     running_time = (pygame.time.get_ticks()) // 1000
@@ -102,6 +146,10 @@ while running and lives > 0:
     # draw title 1 text
     title = title_font1.render("Space Gank", False, (0,0,0))
     screen.blit(title, (SCREEN_WIDTH / 2 - title.get_width() / 2, TILE_SIZE / 2))
+
+    # Load lives picture
+    life_icon = pygame.image.load("../assets/sprites/life_icon.png").convert()
+    life_icon.set_colorkey((255, 255, 255))
 
     # draw life icon backdrop
     pygame.draw.rect(screen, black, (0, 576, 96, 32))

@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fcf79ad4-aab5-4dfd-b3a7-19bb6c8010db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/game/enemy_player.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/game/assets.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/game/enemy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/sprites/monster1.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/sprites/monster1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/sprites/monster2.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/sprites/monster2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/background.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/background.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/enemy_player.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/enemy_player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game/game_par.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/game_par.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/player_enemy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +47,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/m261410/Desktop/Yungin Year/Intro to Programming/Labs/Lab7/chomp/game7"
+    "last_opened_file_path": "C:/Users/m261410/Desktop/Yungin Year/Intro to Programming/Labs/Lab7/Space-Gank"
   }
 }]]></component>
   <component name="RecentsManager">

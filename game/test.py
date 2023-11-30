@@ -2,56 +2,64 @@ import pygame
 import sys
 from math import atan2, cos, sin, sqrt
 
-# Initialize Pygame
-pygame.init()
+class FollowCursorGame:
+    def __init__(self):
+        # Initialize Pygame
+        pygame.init()
 
-# Screen dimensions
-screen_width, screen_height = 800, 600
-screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("Follow Cursor")
+        # Screen dimensions
+        self.screen_width, self.screen_height = 800, 600
+        self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
+        pygame.display.set_caption("Follow Cursor")
 
-# Colors
-white = (255, 255, 255)
-red = (255, 0, 0)
+        # Colors
+        self.white = (255, 255, 255)
+        self.red = (255, 0, 0)
 
-# Player attributes
-player_radius = 20
-player_color = red
-player_x, player_y = screen_width // 2, screen_height // 2
-player_speed = 5
+        # Player attributes
+        self.player_radius = 20
+        self.player_color = self.red
+        self.player_x, self.player_y = self.screen_width // 2, self.screen_height // 2
+        self.player_speed = 5
 
-clock = pygame.time.Clock()
+        self.clock = pygame.time.Clock()
 
-running = True
-while running:
-    screen.fill(white)
+        self.running = True
 
-    # Event handling
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    def handle_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
 
-    # Get the position of the mouse cursor
-    mouse_x, mouse_y = pygame.mouse.get_pos()
+    def calculate_movement(self):
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        dx, dy = mouse_x - self.player_x, mouse_y - self.player_y
+        distance = sqrt((dx ** 2) + (dy ** 2))
 
-    # Calculate the distance between the player and the cursor
-    dx, dy = mouse_x - player_x, mouse_y - player_y
-    distance = ((dx ** 2) + (dy ** 2)) ** 0.5
+        if distance > self.player_speed:
+            angle = atan2(dy, dx)
+            self.player_x += self.player_speed * cos(angle)
+            self.player_y += self.player_speed * sin(angle)
+        else:
+            self.player_x, self.player_y = mouse_x, mouse_y
 
-    # Move the player towards the cursor
-    if distance > player_speed:
-        angle = atan2(dy, dx)
-        player_x += player_speed * cos(angle)
-        player_y += player_speed * sin(angle)
-        print(player_x, player_y)
-    else:
-        player_x, player_y = mouse_x, mouse_y
+    def run_game(self):
+        while self.running:
+            self.screen.fill(self.white)
 
-    # Draw the player
-    pygame.draw.circle(screen, player_color, (int(player_x), int(player_y)), player_radius)
+            self.handle_events()
+            self.calculate_movement()
 
-    pygame.display.flip()
-    clock.tick(60)
+            # Draw the player
+            pygame.draw.circle(self.screen, self.player_color, (int(self.player_x), int(self.player_y)),
+                               self.player_radius)
 
-pygame.quit()
-sys.exit()
+            pygame.display.flip()
+            self.clock.tick(60)
+
+        pygame.quit()
+        sys.exit()
+
+# Create an instance of the game and run it
+game = FollowCursorGame()
+game.run_game()

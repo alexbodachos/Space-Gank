@@ -1,6 +1,7 @@
 import pygame
 import random
 from game_par import *
+from enemy import Enemy, enemies
 
 def draw_background(screen):
 
@@ -28,3 +29,8 @@ def draw_background(screen):
         x = random.randint(0, SCREEN_WIDTH)
         y = random.randint(0, SCREEN_HEIGHT)
         screen.blit(lava2, (x, y))
+
+def add_enemies(num_enemies):
+    for z in range(num_enemies):
+        enemies.add(Enemy(random.randint(SCREEN_WIDTH, SCREEN_WIDTH * 1.5),
+                        random.randint(TILE_SIZE, SCREEN_HEIGHT - 2 * TILE_SIZE)))

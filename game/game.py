@@ -24,6 +24,16 @@ def intro_screen(screen):
     planet1.set_colorkey((255, 255, 255))
 
     running_intro = True
+    screen.fill((0, 0, 0))  # Fill screen with black
+    for i in range(45):
+        x = random.randint(0, SCREEN_WIDTH)
+        y = random.randint(0, SCREEN_HEIGHT)
+        screen.blit(star, (x, y))
+        screen.blit(intro_text1, text_rect1)
+        screen.blit(intro_text2, text_rect2)
+        screen.blit(intro_text3, text_rect3)
+        screen.blit(planet1, (TILE_SIZE * 9, TILE_SIZE * 3))
+    pygame.display.flip()
     while running_intro:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -32,13 +42,6 @@ def intro_screen(screen):
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     return
-
-        screen.fill((0, 0, 0))  # Fill screen with black
-        screen.blit(intro_text1, text_rect1)
-        screen.blit(intro_text2, text_rect2)
-        screen.blit(intro_text3, text_rect3)
-        screen.blit(planet1, (TILE_SIZE * 9, TILE_SIZE * 3))
-        pygame.display.flip()
 
 # Create the screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))

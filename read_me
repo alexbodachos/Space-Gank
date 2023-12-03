@@ -22,3 +22,16 @@ Game Mechanics:
   - The hunted has 3 lives in which 1 will be redacted by a scorpion
   - If the hunter makes contact 3 lives will be redacted resulting in a game over screen even if they have full lives
 
+Citations:
+ChatGPT:
+  - Mouse Cursor movement
+  - Intro Screen
+  - Make Custom Sprites
+Ryan Flaherty:
+  - Intro and Game Over Screens
+
+Helping Hand:
+- Ryan Flaherty with clock
+- Ryan Flaherty with background dirt spawn
+- Alexis Schneider with intro screen
+

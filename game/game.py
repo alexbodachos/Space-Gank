@@ -18,10 +18,18 @@ def intro_screen(screen):
     intro_text3 = intro_font.render("Press Space", True, (214, 11, 11))
     text_rect1 = intro_text1.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
     text_rect2 = intro_text2.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + TILE_SIZE))
-    text_rect3 = intro_text2.get_rect(center=(SCREEN_WIDTH // 2 + TILE_SIZE + 25, SCREEN_HEIGHT // 2 + TILE_SIZE * 2))
+    text_rect3 = intro_text3.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + TILE_SIZE * 2))
+
+    # load custom images for intro
     star = pygame.image.load("../assets/sprites/star.png")
     planet1 = pygame.image.load("../assets/sprites/planet1.png").convert()
+    comet = pygame.image.load("../assets/sprites/comet.png").convert()
+    spaceship = pygame.image.load("../assets/sprites/Spaceship.png").convert()
+
+    # set color_key
     planet1.set_colorkey((255, 255, 255))
+    comet.set_colorkey((255, 255, 255))
+    spaceship.set_colorkey((255, 255, 255))
 
     running_intro = True
     screen.fill((0, 0, 0))  # Fill screen with black
@@ -33,6 +41,8 @@ def intro_screen(screen):
         screen.blit(intro_text2, text_rect2)
         screen.blit(intro_text3, text_rect3)
         screen.blit(planet1, (TILE_SIZE * 9, TILE_SIZE * 3))
+        screen.blit(comet, (TILE_SIZE * 2, TILE_SIZE * 7))
+        screen.blit(spaceship, (TILE_SIZE * 2.5, TILE_SIZE * 2.95))
     pygame.display.flip()
     while running_intro:
         for event in pygame.event.get():
@@ -65,10 +75,13 @@ player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 enemy_player = Enemy_Player(TILE_SIZE, TILE_SIZE)
 
 # Draw enemies on the screen
-add_enemies(1)
+add_enemies(3)
 
 # set number of lives
 lives = NUM_LIVES
+
+# start time
+start_time = pygame.time.get_ticks() // 1000
 
 while running and lives > 0:
     pygame.mixer.Sound.play(b_sound)
@@ -135,11 +148,14 @@ while running and lives > 0:
     # draw enemies on screen
     enemies.draw(screen)
 
+    # running time
+    running_time = pygame.time.get_ticks() // 1000
+
     # calculate time
-    running_time = (pygame.time.get_ticks()) // 1000
+    game_time = (running_time - start_time)
 
     # draw time text
-    timer = count_font.render(f"{running_time}", True, (0, 0, 0))
+    timer = count_font.render(f"{game_time}", True, (0, 0, 0))
     screen.blit(timer, (10, 10))
 
     # draw title 2 text
@@ -173,3 +189,4 @@ pygame.quit()
 # TODO Helping Hand
 # Ryan Flaherty with clock
 # Ryan Flaherty with background dirt spawn
+# Alexis Schneider with intro screen

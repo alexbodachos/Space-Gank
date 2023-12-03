@@ -12,6 +12,7 @@ import sys
 # initialize pygame
 pygame.init()
 
+# intro screen function
 def intro_screen(screen):
     intro_text1 = intro_font.render("Welcome to Space Gank!", True, (214, 11, 11))
     intro_text2 = intro_font.render("Objective: Survive", True, (214, 11, 11))
@@ -32,7 +33,8 @@ def intro_screen(screen):
     spaceship.set_colorkey((255, 255, 255))
 
     running_intro = True
-    screen.fill((0, 0, 0))  # Fill screen with black
+    # Create the Intro Screen
+    screen.fill((0, 0, 0))
     for i in range(45):
         x = random.randint(0, SCREEN_WIDTH)
         y = random.randint(0, SCREEN_HEIGHT)
@@ -52,6 +54,49 @@ def intro_screen(screen):
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     return
+
+
+
+# Define Game over screen
+def game_over_screen(screen):
+    game_over_text1 = game_over_font1.render("Game Over", True, (214, 11, 11))
+    game_over_text2 = game_over_font2.render(f"You survived for: {game_time} seconds", True, (214, 11, 11))
+
+    text_rect1 = game_over_text1.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
+    text_rect2 = game_over_text2.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + TILE_SIZE))
+
+    # load custom images for intro
+    star = pygame.image.load("../assets/sprites/star.png")
+    planet1 = pygame.image.load("../assets/sprites/planet1.png").convert()
+    comet = pygame.image.load("../assets/sprites/comet.png").convert()
+    spaceship = pygame.image.load("../assets/sprites/Spaceship.png").convert()
+
+    # set color_key
+    planet1.set_colorkey((255, 255, 255))
+    comet.set_colorkey((255, 255, 255))
+    spaceship.set_colorkey((255, 255, 255))
+
+    game_over = True
+    screen.fill((0, 0, 0))
+    for i in range(45):
+        x = random.randint(0, SCREEN_WIDTH)
+        y = random.randint(0, SCREEN_HEIGHT)
+        screen.blit(star, (x, y))
+        screen.blit(planet1, (TILE_SIZE * 9, TILE_SIZE * 3))
+        screen.blit(comet, (TILE_SIZE * 2, TILE_SIZE * 7))
+        screen.blit(spaceship, (TILE_SIZE * 2.5, TILE_SIZE * 2.95))
+        screen.blit(game_over_text1, text_rect1)
+        screen.blit(game_over_text2, text_rect2)
+    pygame.display.flip()
+    while game_over:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
 
 # Create the screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -91,16 +136,16 @@ while running and lives > 0:
         elif event.type == pygame.MOUSEMOTION:
             player.movement()
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_w:
                 print("You pressed the key up key")
                 enemy_player.move_up()
-            if event.key == pygame.K_DOWN:
+            if event.key == pygame.K_s:
                 print("You pressed the key down key")
                 enemy_player.move_down()
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_a:
                 print("You pressed the key left key")
                 enemy_player.move_left()
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_d:
                 print("You pressed the key right key")
                 enemy_player.move_right()
         elif event.type == pygame.KEYUP:
@@ -130,6 +175,7 @@ while running and lives > 0:
     if result:
         lives -= len(result)
         add_enemies(len(result))
+        channel2.play(hurt)
 
     # check for collision with player sprite and enemy player sprite
     result = pygame.sprite.collide_rect(player, enemy_player)
@@ -176,6 +222,10 @@ while running and lives > 0:
     # draw life icons
     for i in range(lives):
         screen.blit(life_icon, (i * TILE_SIZE / 2, SCREEN_HEIGHT - TILE_SIZE))
+
+    # condition for game over function
+    if lives <= 0:
+        game_over_screen(screen)
 
     # flip screen
     pygame.display.flip()

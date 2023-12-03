@@ -1,1 +1,24 @@
+Hello and welcome to SPACE_GANK:
+
+This is a two player game that requires  quick thinking and deliberate movement. It is even better when there is a feud between you and the person you are playing against. 
+
+Abstract:
+Rather than a coop game, this is a game where the two players are pitted against each other. There is a hunter and a hunted player in which the hunter tries to catch
+the hunted. The goal of the hunted is to survive for as long as possible without being caught. Each player has advantages and disadvantages. The hunted moves quicker and with
+more precise movement via the mouse. This gives a highly responsive movement that can be adjusted consistantly. The hunter moves slower and less precisely for they use the 
+aswd keys to move. However, the hunter has help with npcs that spawn randomly on the right side that will hurt the hunted if they make contact. The hunter has to use strategy
+to try and corner the hunted into losing the 3 lives provided. 
+
+Game Chronology:
+- intro screen (continue to game loop by pressing space)
+- game loop:
+  - hunted has 3 lives
+  - game time begins
+  - hunted must avoid hunter and scorpions
+- game over screen:
+  - shows how long hunted survived for
+
+Game Mechanics:
+  - The hunted has 3 lives in which 1 will be redacted by a scorpion
+  - If the hunter makes contact 3 lives will be redacted resulting in a game over screen even if they have full lives
 
